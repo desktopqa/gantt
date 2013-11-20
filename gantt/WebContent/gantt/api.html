@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>甘特图API</title>
+<style type="text/css">
+th, td
+{
+	border: 1px solid #B1CAE9;
+}
+</style>
+</head>
+<body>
+<table cellpadding="0" style="100%;">
+<tr>
+	<th colspan="2">参数：</th>
+</tr>
+<tr>
+	<td>配置项</td><td>说明</td>
+</tr>
+<tr>
+	<td>mode</td>
+	<td>
+		可能的取值为 'day', 'week',两种不同的模式。week每次显示一周，day每格显示一天。
+	</td>
+</tr>
+<tr>
+	<td>startParam</td>
+	<td>
+		'start' 标志每个时间开始的参数。
+	</td>
+</tr>
+<tr>
+	<td>endParam</td>
+	<td>
+		'end' 标志每个时间结束的参数。
+	</td>
+</tr>
+<tr>
+	<td>headerFormat</td>
+	<td>
+		显示的时间格式
+	</td>
+</tr>
+<tr>
+	<td>theme</td>
+	<td>
+		false：表示是否采用jquery ui的样式。
+	</td>
+</tr>
+<tr>
+	<td>editable</td>
+	<td>
+		true：是否可以拖拽事件。
+	</td>
+</tr>
+<tr>
+	<td>events</td>
+	<td>
+	    [
+		{
+			id : 1234,
+			title: 'All Day Event',
+			start: new Date(y, m, 1),
+			top: 100,  //离top的位置
+		}
+		]
+	</td>
+</tr>
+<tr>
+	<th colspan="2">接口：</th>
+</tr>
+<tr>
+	<td>refetchEvents</td>
+	<td>
+		重新获取事件并渲染
+	</td>
+</tr>
+<tr>
+	<td>rerenderEvents(eventid)</td>
+	<td>
+		重新渲染事件,可以单独渲染某一个事件，没有参数则渲染全部事件。
+	</td>
+</tr>
+<tr>
+	<td>select(start, end)</td>
+	<td>
+		选择特定的时间，但是没有生成事件。
+	</td>
+</tr>
+<tr>
+	<td>gotoDate(date)</td>
+	<td>
+		跳转(滚动)到某个时间。
+	</td>
+</tr>
+<tr>
+	<td>formatDate(format, date)</td>
+	<td>
+		按照format格式化时间。
+	</td>
+</tr>
+<tr>
+	<td>getView()</td>
+	<td>
+		获取当前视图
+	</td>
+</tr>
+<tr>
+	<td>setStartDate(date)</td>
+	<td>
+		设置甘特图的开始时间
+	</td>
+</tr>
+<tr>
+	<td>setEndDate(date)</td>
+	<td>
+		设置甘特图的结束时间
+	</td>
+</tr>
+<tr>
+	<td>changeMode(mode)</td>
+	<td>
+		改变视图的方式，day 或者 week
+	</td>
+</tr>
+<tr>
+	<td>updateEvent(eventID)</td>
+	<td>
+		更新一个事件
+	</td>
+</tr>
+<tr>
+	<td>renderEvent(eventObj)</td>
+	<td>
+		渲染一个事件
+	</td>
+</tr>
+<tr>
+	<td>removeEvents(filter)</td>
+	<td>
+		删除满足条件的事件
+	</td>
+</tr>
+<tr>
+	<td>addEventSource(eventSource)</td>
+	<td>
+		增加一个事件源，可以是一个数组 也可以是个url
+	</td>
+</tr>
+
+<tr>
+	<td>removeEventSource(source)</td>
+	<td>
+		删除事件源，根据source判断相等
+	</td>
+</tr>
+<tr>
+	<td>clientEvents()</td>
+	<td>
+		获取当前所有的事件
+	</td>
+</tr>
+<tr>
+	<td>normalizeEvent(event)</td>
+	<td>
+		格式化事件，将事件的相关属性进行设置
+	</td>
+</tr>
+
+<tr>
+	<th colspan="2">事件：</th>
+</tr>
+<tr>
+	<td>windowResize(view)</td>
+	<td>
+		窗口大小发生变化。
+	</td>
+</tr>
+<tr>
+	<td>dayContextmenu(date, allDay, jsEvent, view)</td>
+	<td>
+		在日期上触发右键时间jsEvent：是原生的js事件
+	</td>
+</tr>
+<tr>
+	<td>normalizeEvent(event)</td>
+	<td>
+		格式化事件，将事件的相关属性进行设置
+	</td>
+</tr>
+<tr>
+	<td>select: function(start, end)</td>
+	<td>
+		选择某段时间后触发
+	</td>
+</tr>
+<tr>
+	<td>eventContextmenu(event,jsEvent,view)</td>
+	<td>
+		在事件上触发右击事件
+	</td>
+</tr>
+<tr>
+	<td>eventClick(event, jsEvent, view)</td>
+	<td>
+		在事件上触发单击事件。
+	</td>
+</tr>
+<tr>
+	<td>dayClick(date, allDay, jsEvent, view)</td>
+	<td>
+		在某天上触发单击
+	</td>
+</tr>
+<tr>
+	<td>eventMouseover(event, jsEvent, view )</td>
+	<td>
+		在事件上触发mouseover事件
+	</td>
+</tr>
+<tr>
+	<td>eventMouseout(event, jsEvent, view )</td>
+	<td>
+		在事件上触发mouseout事件
+	</td>
+</tr>
+<tr>
+	<td>eventDragStart(event, jsEvent, ui, view)</td>
+	<td>
+		开始拖拽事件，可以通过返回false结束拖拽事件
+	</td>
+</tr>
+<tr>
+	<td>eventDragStop(event, jsEvent, ui, view )</td>
+	<td>
+		结束拖拽
+	</td>
+</tr>
+<tr>
+	<td>eventDrop(event, dayDelta, minuteDelta, allDay, revertFunc, jsEvent, ui, view)</td>
+	<td>
+		完成拖拽，可以通过调用revertFunc 返回调用之前的状态
+	</td>
+</tr>
+<tr>
+	<td>eventResizeStart(event, jsEvent, ui, view)</td>
+	<td>
+		开始调整事件的大小，可以通过返回false阻止事件继续进行。
+	</td>
+</tr>
+<tr>
+	<td>eventResizeStop(event, jsEvent, ui, view  )</td>
+	<td>
+		结束拖拽
+	</td>
+</tr>
+
+<tr>
+	<td>eventResize(event, dayDelta, minuteDelta, revertFunc, jsEvent, ui, view )</td>
+	<td>
+		完成调整，daydelta表示调整的天数，revertFunc返回调整之前的状态
+	</td>
+</tr>
+</table>
+</body>
+</html>
